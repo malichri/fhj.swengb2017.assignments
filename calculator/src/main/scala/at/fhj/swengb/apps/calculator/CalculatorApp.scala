@@ -3,7 +3,9 @@ package at.fhj.swengb.apps.calculator
 import java.net.URL
 import java.util.ResourceBundle
 import javafx.application.Application
+import javafx.event.ActionEvent
 import javafx.fxml.{FXMLLoader, Initializable}
+import javafx.scene.control.Button
 import javafx.scene.{Parent, Scene}
 import javafx.stage.Stage
 
@@ -51,6 +53,14 @@ class CalculatorFxController extends Initializable {
   }
 
   def sgn() : Unit = {
+
     println("an event has happened")
+  }
+
+  def onNumberClicked(event: ActionEvent) : Unit = {
+    val button = event.getSource.asInstanceOf[Button]
+
+
+    println("test Button Nr:" + button.getText)
   }
 }
