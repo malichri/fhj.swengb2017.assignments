@@ -19,4 +19,8 @@
 | 2
 | fixed bugs
 
+| 07.12.2017
+| 5
+| some crazy shit is going on
+
 |===
