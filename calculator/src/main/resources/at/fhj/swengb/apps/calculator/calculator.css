@@ -87,3 +87,14 @@
 #dark-blue Text {
     -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.9) , 1, 0.0 , 0 , 1 );
 }
+
+#calculator .dark-textfield{
+    -fx-background-color:
+            #000000,
+            linear-gradient(#030303 0%, #000000 20%, #191d22 100%),
+            linear-gradient(#030303, #000000),
+            radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(0,0,0,0));
+     -fx-text-fill: black;
+     -fx-font-size: 29px;
+     -fx-padding: 5 10 5 10;
+}

@@ -20,9 +20,9 @@
           <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="2" />
+            <TextField styleClass="dark-textfield" />
+            <TextField GridPane.columnIndex="1" styleClass="dark-textfield"/>
+            <TextField GridPane.columnIndex="2" styleClass="dark-textfield"/>
          </children>
       </GridPane>
       <GridPane GridPane.rowIndex="1" styleClass="dark-blue-pane">
