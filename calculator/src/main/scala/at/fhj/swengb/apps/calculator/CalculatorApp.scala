@@ -3,12 +3,16 @@ package at.fhj.swengb.apps.calculator
 import java.net.URL
 import java.util.ResourceBundle
 import javafx.application.Application
+import javafx.beans.property
+import javafx.beans.property.{ObjectProperty, SimpleObjectProperty}
+import javafx.fxml.FXML
+import javafx.scene.control.{Button, TextField}
 import javafx.event.ActionEvent
 import javafx.fxml.{FXMLLoader, Initializable}
-import javafx.scene.control.Button
 import javafx.scene.{Parent, Scene}
 import javafx.stage.Stage
 
+import scala.util.{Failure, Success}
 import scala.util.control.NonFatal
 
 object CalculatorApp {
@@ -21,7 +25,7 @@ object CalculatorApp {
 class CalculatorFX extends javafx.application.Application {
 
   val fxml = "/at/fhj/swengb/apps/calculator/calculator.fxml"
-  val css =  "/at/fhj/swengb/apps/calculator/calculator.css"
+  val css = "/at/fhj/swengb/apps/calculator/calculator.css"
 
   def mkFxmlLoader(fxml: String): FXMLLoader = {
     new FXMLLoader(getClass.getResource(fxml))
@@ -29,7 +33,7 @@ class CalculatorFX extends javafx.application.Application {
 
   override def start(stage: Stage): Unit =
     try {
-      stage.setTitle("Calculator")
+      stage.setTitle("Awesome Malculator")
       setSkin(stage, fxml, css)
       stage.show()
       stage.setMinWidth(stage.getWidth)
@@ -48,13 +52,25 @@ class CalculatorFX extends javafx.application.Application {
 }
 
 class CalculatorFxController extends Initializable {
+
+  val calculatorProperty: ObjectProperty[RpnCalculator] = new SimpleObjectProperty[RpnCalculator](RpnCalculator())
+
+  def getCalculator() : RpnCalculator = calculatorProperty.get()
+
+  def setCalculator(rpnCalculator : RpnCalculator) : Unit = calculatorProperty.set(rpnCalculator)
+
+  @FXML var numberTextField : TextField = _
+
   override def initialize(location: URL, resources: ResourceBundle) = {
 
   }
 
-  def sgn() : Unit = {
-
-    println("an event has happened")
+  def sgn(): Unit = {
+    getCalculator().push(Op(numberTextField.getText)) match {
+      case Success(c) => setCalculator(c)
+      case Failure(e) => // show warning / error
+    }
+    getCalculator().stack foreach println
   }
 
   def onNumberClicked(event: ActionEvent) : Unit = {
