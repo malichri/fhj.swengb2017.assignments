@@ -1,0 +1,32 @@
+== Time expenditure: battleship assignment
+
+[cols="1,1,1, 1,4", options="header"]
+.Time expenditure
+|===
+| Student
+| Due Date
+| Estimated Hours
+| Actual Hours
+| Description
+
+| malichri & ortnerth16
+| 22.12.2017
+| 2
+| 1
+| tasks aufteilung
+
+| malichri & ortnerth16
+| 23.12.2017
+| 3
+| 2
+| protobuf einlesen
+
+| malichri
+| 28.12.2017
+| 4
+| 5
+| convert functions (Protocol) / Spec
+
+
+
+|===

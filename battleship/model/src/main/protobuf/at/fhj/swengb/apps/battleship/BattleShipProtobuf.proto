@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package at.fhj.swengb.apps.battleship;
+
+option java_package         = "at.fhj.swengb.apps.battleship";
+option java_outer_classname = "BattleShipProtobuf";
+
+
+message BattlePos {
+    int32 x = 1;
+    int32 y = 2;
+}
+
+enum Direction {
+    Horizontal = 0;
+    Vertical = 1;
+}
+
+message Vessel {
+    string name = 1;
+    BattlePos startPos = 2;
+    Direction direction = 3;
+    int32 size = 4;
+}
+
+message Fleet {
+    repeated Vessel vessel = 1;
+}
+
+message BattleField {
+    int32 with = 1;
+    int32 height = 2;
+    Fleet fleet = 3;
+}
+
+message BattleShipGame {
+    BattleField battlefield = 1;
+    double cellWidth = 2;
+    double cellHeight = 3;
+    string log = 4;
+}
