@@ -14,6 +14,7 @@ case class BattleFxCell(pos: BattlePos
                         , log: String => Unit
                         , someVessel: Option[Vessel] = None
                         , fn: (Vessel, BattlePos) => Unit
+                        , fpos: (BattlePos) => Unit
                         ) extends Rectangle(width, height) {
 
   def init(): Unit = {

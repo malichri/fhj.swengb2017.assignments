@@ -21,6 +21,11 @@ case class BattleShipGame(battleField: BattleField,
   var sunkShips: Set[Vessel] = Set()
 
   /**
+    * inculdes the actual game state (for load/save game)
+    */
+  var actualState: List[BattlePos] = List()
+
+  /**
     * We don't ever change cells, they should be initialized only once.
     */
   private val cells: Seq[BattleFxCell] = for {x <- 0 until battleField.width
@@ -31,10 +36,12 @@ case class BattleShipGame(battleField: BattleField,
       getCellHeight(y),
       log,
       battleField.fleet.findByPos(pos),
-      updateGameState)
+      updateGameState,
+      addCell)
   }
 
   def getCells(): Seq[BattleFxCell] = cells
+
 
 
   def updateGameState(vessel: Vessel, pos: BattlePos): Unit = {
@@ -82,5 +89,22 @@ case class BattleShipGame(battleField: BattleField,
 
   }
 
+  /**
+    * add cell to the actual Game state
+    * @param pos
+    */
+  def addCell(pos: BattlePos): Unit = {
+    if(!actualState.contains(pos))
+      actualState = actualState :+ pos
+  }
 
+  /**
+    *  update the actual Game state
+    * @param cell
+    */
+  def updateState(cell:Int) : Unit = {
+    actualState.take(cell).foreach((pos) => {
+      cells(pos.x*battleField.width + pos.y).getOnMouseClicked().handle(null)
+    })
+  }
 }
